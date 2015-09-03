@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903035955) do
+ActiveRecord::Schema.define(version: 20150903081611) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "user_name",  limit: 255
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 20150903035955) do
 
   create_table "tags", force: :cascade do |t|
     t.string   "tag_name",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "takahiros", force: :cascade do |t|
+    t.string   "user_name",  limit: 255
+    t.string   "comment",    limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

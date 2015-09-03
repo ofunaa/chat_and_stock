@@ -51,4 +51,22 @@ class TopController < ApplicationController
 		session[:user_name] = params[:name]
 		redirect_to :root
 	end
+
+	def takahiro
+		if session[:user_name] == nil
+			flash.notice = '名前を入力してください。'
+		end
+		@new_comment = Takahiro.new
+		@comments = Takahiro.all
+	end
+	def takahiro_create
+		@new_comment = Takahiro.new
+		@new_comment.user_name = session[:user_name]
+		@new_comment.comment = params[:takahiro][:comment]
+		if @new_comment.save
+			redirect_to :takahiro
+		else
+			redirect_to :root
+		end
+	end
 end
