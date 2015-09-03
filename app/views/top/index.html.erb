@@ -1,0 +1,68 @@
+<% if flash.notice || flash.alert %>
+    <div class="notice_block">
+        <div class="wrap">
+            <%= content_tag(:span, flash.notice, class: 'notice')  %>
+            <%= form_tag('/users_name') do %>
+            	<input type="text" name="name">
+            	<%= submit_tag() %>
+            <% end %>
+        </div>
+    </div>
+<% end %>
+	<div class="main">
+		<!-- がんばれー笑 -->
+		<div class="header">
+			<div class="wrap">
+				<h1><a href="/">Hoshino Takahiroの卒論</a></h1>
+				<p><a href="/new">NEW TAG</a></p>
+			</div>
+		</div>
+		<div class="main">
+			<div class="wrap">
+				<div class="left_main">
+					<% @comments.each do |comment| %>
+
+						<div class="comment">
+							<p><%= comment.user_name %></p>
+							<h3><%= comment.comment %></h3>
+							<%= form_for(@new_middle, url: :tag) do |f| %>
+							  <%= f.label :tag_id %>
+							  <%= f.collection_select :tag_id, Tag.all, :id, :tag_name, {} ,{:class => "form-control"} %>
+							  <input type="hidden" name="middle[comment_id]" id="middle_comment_id" value="<%= comment.id %>" />
+							  <%= f.submit 'タグセット' , :class => 'tag_set'%>
+							  <p><%= comment.created_at.strftime('%c') %></p>
+							<% end %>
+						</div>
+
+					<% end %>
+				</div>
+				<div class="right_main">
+					<% @tags.each do |tag| %>
+						<div class="tag">
+							<h3><%= tag.tag_name %></h3>
+							<% @middles = Middle.where(tag_id: tag.id) %>
+							<ul>
+								<% @middles.each do |middle| %>
+									<% @comments = Comment.where(id: middle.comment_id) %>
+										<% @comments.each do |comment| %>
+										<li><%= comment.comment %></li>
+										<a href="/tag_delete?comment=<%= comment.id %>&tag=<%= tag.id %>">削除</a>
+									<% end %>
+								<% end %>
+							</ul>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="wrap">
+				<%= form_for(@new_comment, url: :post) do |f| %>
+					<%= f.label :comment, 'コメント投稿', :class => 'mt-10' %>
+                    <%= f.text_area :comment %>
+                    <%= f.submit '投稿' %>
+				<% end %>
+			</div>
+		</div>
+		</div>
+	</div>
