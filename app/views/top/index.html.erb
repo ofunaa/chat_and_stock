@@ -13,8 +13,8 @@
 		<!-- がんばれー笑 -->
 		<div class="header">
 			<div class="wrap">
-				<h1><a href="/">Hoshino Takahiroの卒論</a></h1>
-				<p><a href="/new">NEW TAG</a></p>
+				<h1><a href="/all">Hoshino Takahiroの卒論</a></h1>
+				<p><a href="/new?page=<%= params[:page] %>" class="new_tag">NEW TAG</a></p>
 			</div>
 		</div>
 		<div class="main">
@@ -22,15 +22,16 @@
 				<div class="left_main">
 					<% @comments.each do |comment| %>
 
-						<div class="comment">
-							<p><%= comment.user_name %></p>
+						<div class="comment <%= "own_comment" if comment.user_name == session[:user_name]  %>">
+							<p><span class="user"><%= comment.user_name %></span><span class="settime"><%= comment.created_at.strftime('%H:%M:%S') %></span></p>
 							<h3><%= comment.comment %></h3>
 							<%= form_for(@new_middle, url: :tag) do |f| %>
 							  <%= f.label :tag_id %>
-							  <%= f.collection_select :tag_id, Tag.all, :id, :tag_name, {} ,{:class => "form-control"} %>
+							  <%= f.collection_select :tag_id, Tag.where(page: params[:page]), :id, :tag_name, {} ,{:class => "form-control"} %>
 							  <input type="hidden" name="middle[comment_id]" id="middle_comment_id" value="<%= comment.id %>" />
+							  <input type="hidden" name="page" id="page" value="<%= params[:page] %>" />
 							  <%= f.submit 'タグセット' , :class => 'tag_set'%>
-							  <p><%= comment.created_at.strftime('%c') %></p>
+							  
 							<% end %>
 						</div>
 
@@ -45,8 +46,8 @@
 								<% @middles.each do |middle| %>
 									<% @comments = Comment.where(id: middle.comment_id) %>
 										<% @comments.each do |comment| %>
-										<li><%= comment.comment %></li>
-										<a href="/tag_delete?comment=<%= comment.id %>&tag=<%= tag.id %>">削除</a>
+										<li class="set_tag"><%= comment.comment %>
+										<a href="/tag_delete?comment=<%= comment.id %>&tag=<%= tag.id %>">削除</a></li>
 									<% end %>
 								<% end %>
 							</ul>
@@ -60,6 +61,7 @@
 				<%= form_for(@new_comment, url: :post) do |f| %>
 					<%= f.label :comment, 'コメント投稿', :class => 'mt-10' %>
                     <%= f.text_area :comment %>
+                    <input type="hidden" name="page" id="page" value="<%= params[:page] %>" />
                     <%= f.submit '投稿' %>
 				<% end %>
 			</div>

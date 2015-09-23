@@ -11,11 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903081611) do
+ActiveRecord::Schema.define(version: 20150923133512) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "user_name",  limit: 255
     t.string   "comment",    limit: 255
+    t.float    "page",       limit: 24
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -27,15 +28,25 @@ ActiveRecord::Schema.define(version: 20150903081611) do
     t.datetime "updated_at",            null: false
   end
 
+  create_table "pages", force: :cascade do |t|
+    t.string   "page_name",     limit: 255
+    t.float    "comments",      limit: 24
+    t.boolean  "takahiro_flag"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string   "tag_name",   limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.float    "page",       limit: 24
   end
 
   create_table "takahiros", force: :cascade do |t|
     t.string   "user_name",  limit: 255
     t.string   "comment",    limit: 255
+    t.float    "page",       limit: 24
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

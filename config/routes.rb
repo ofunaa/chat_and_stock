@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   post    'tag'          =>  'top#tag'
   get     'tag_delete'   =>  'top#tag_delete'
   post    'users_name'   =>  'top#users_name'
+  get 	  'all' 		=>	'top#all'
+  post 	  'all_post' 		=>	'top#all_post'
+
+
   get     'takahiro'   =>    'top#takahiro'
   post    'takahiro/post'    =>  'top#takahiro_create'
+  
 end

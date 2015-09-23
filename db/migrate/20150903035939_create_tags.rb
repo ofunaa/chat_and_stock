@@ -3,6 +3,7 @@ class CreateTags < ActiveRecord::Migration
     create_table :tags do |t|
       t.string :tag_name
       t.timestamps null: false
+      t.float :page
     end
   end
 end

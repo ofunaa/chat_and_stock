@@ -1,0 +1,37 @@
+	<div class="main">
+		<!-- がんばれー笑 -->
+		<div class="header">
+			<div class="wrap">
+				<h1><a href="/all">Hoshino Takahiroの卒論</a></h1>
+			</div>
+		</div>
+		<div class="main">
+			<div class="wrap">
+				<div class="left_main">
+					<% @pages.each do |page| %>
+
+						<div class="comment">
+							<% unless page.takahiro_flag == 1 %>
+								<a href="/?page=<%= page.id %>"><h3><%= page.page_name %></h3></a>
+							<% else %>
+								<a href="/takahiro/?page=<%= page.id %>"><h3><%= page.page_name %></h3></a>
+							<% end %>
+						</div>
+
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="wrap">
+				<%= form_for(@new_page, url: :all_post) do |f| %>
+					<%= f.label :page_name, '新規スレッド作成', :class => 'mt-10' %>
+                    <%= f.text_field :page_name %>
+                    <%= f.label :takahiro_flag, 'takahiro verにする', :class => 'mt-10' %>
+                    <%= f.check_box :takahiro_flag , {}, true, false %>
+                    <%= f.submit '作成！' %>
+				<% end %>
+			</div>
+		</div>
+		</div>
+	</div>

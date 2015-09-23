@@ -13,7 +13,7 @@
 		<!-- がんばれー笑 -->
 		<div class="header">
 			<div class="wrap">
-				<h1><a href="/">Hoshino Takahiroの卒論</a></h1>
+				<h1><a href="/all">Hoshino Takahiroの卒論</a></h1>
 				<p><a href="/new">NEW TAG</a></p>
 			</div>
 		</div>
@@ -22,6 +22,7 @@
 				<%= form_for(@tag, url: :new_post) do |f| %>
 					<%= f.label :tag_name, '新しいタグ', :class => 'mt-10' %>
                     <%= f.text_area :tag_name %>
+                    <input type="hidden" name="page" id="page" value="<%= params[:page] %>" />
                     <%= f.submit '投稿' %>
 				<% end %>
 			</div>

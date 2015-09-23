@@ -20,6 +20,11 @@
 	float:right;
 	text-align:right;
 }
+.header p{
+	width:30%;
+	float:right;
+	text-align:right;
+}
 .main{
 	width:100%;
 	float:left;
@@ -38,19 +43,27 @@
 .comment{
 	width:86%;
 	margin:2%;
-	margin-top:20px;
+	font-size:17px;
+	color:#000;
+	line-height:150%;
+	margin-top:10px;
 	padding:5%;
 	background-color:#fff;
+	padding-top:1%;
+	padding-bottom:1%;
 }
 .comment select{
-	height:28px;
+	height:20px;
 	width:90px;
-	font-size:18px;
+	font-size:13px;
+}
+label{
+	font-size:10px;
 }
 .tag_set{
-	height:28px;
+	height:20px;
 	width:110px;
-	font-size:18px;
+	font-size:13px;
 	background-color:#68CFC3;
 	color:white;
 	cursor:pointer;
@@ -66,7 +79,7 @@
 .tag{
 	width:86%;
 	margin:2%;
-	margin-top:20px;
+	margin-top:10px;
 	padding:5%;
 	background-color:#fff;
 }
@@ -95,7 +108,9 @@
 	color:white;
 	cursor:pointer;
 }
-
+a:hover{
+	color:#dcdcdc;
+}
 
 .notice_block{
 	width:100%;
@@ -103,3 +118,26 @@
 	background-color:rgba(246,213,128,0.8);
 }
 
+
+a.new_tag{
+	position:fixed;
+	right:10;
+	background-color:orange;
+	color:white;
+	padding:10px;
+	text-decoration: none;
+}
+.user{
+	background-color:orange;
+	padding:2px;
+	color:white;
+}
+.set_tag{
+	margin-top:15px;
+}
+.settime{
+	margin-left:20px;
+}
+.own_comment{
+	background-color:rgba(246,213,128,0.9);
+}
