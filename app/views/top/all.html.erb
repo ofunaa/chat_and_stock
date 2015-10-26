@@ -11,11 +11,12 @@
 					<% @pages.each do |page| %>
 
 						<div class="comment">
-							<% unless page.takahiro_flag == 1 %>
-								<a href="/?page=<%= page.id %>"><h3><%= page.page_name %></h3></a>
-							<% else %>
+							<% if page.takahiro_flag == true %>
 								<a href="/takahiro/?page=<%= page.id %>"><h3><%= page.page_name %></h3></a>
+							<% else %>
+								<a href="/?page=<%= page.id %>"><h3><%= page.page_name %></h3></a>
 							<% end %>
+								<%= link_to 'delete', all_delete_path(:id => page.id), :method => :delete  %>
 						</div>
 
 					<% end %>
@@ -27,7 +28,7 @@
 				<%= form_for(@new_page, url: :all_post) do |f| %>
 					<%= f.label :page_name, '新規スレッド作成', :class => 'mt-10' %>
                     <%= f.text_field :page_name %>
-                    <%= f.label :takahiro_flag, 'takahiro verにする', :class => 'mt-10' %>
+                    <%= f.label :takahiro_flag, 'タグ無し verにする', :class => 'mt-10' %>
                     <%= f.check_box :takahiro_flag , {}, true, false %>
                     <%= f.submit '作成！' %>
 				<% end %>

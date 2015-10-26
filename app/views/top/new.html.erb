@@ -13,12 +13,16 @@
 		<!-- がんばれー笑 -->
 		<div class="header">
 			<div class="wrap">
-				<h1><a href="/all">Hoshino Takahiroの卒論</a></h1>
-				<p><a href="/new">NEW TAG</a></p>
+				<h1><a href="/all">『<%= @page.page_name ||= "Hoshino Takahiroの卒論" %>』のタグ追加</a></h1>
+				<p><a href="/?page=<%= @back_url %>">戻る</a></p>
 			</div>
 		</div>
 		<div class="footer">
 			<div class="wrap">
+				<h3>タグ一覧</h3>
+				<% @all_tag.each do |tag_tag| %>
+				<p><%= tag_tag.tag_name %></p>
+				<% end %>
 				<%= form_for(@tag, url: :new_post) do |f| %>
 					<%= f.label :tag_name, '新しいタグ', :class => 'mt-10' %>
                     <%= f.text_area :tag_name %>

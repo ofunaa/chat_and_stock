@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post    'users_name'   =>  'top#users_name'
   get 	  'all' 		=>	'top#all'
   post 	  'all_post' 		=>	'top#all_post'
+  delete  'all_delete'     => 'top#all_delete'
 
 
   get     'takahiro'   =>    'top#takahiro'

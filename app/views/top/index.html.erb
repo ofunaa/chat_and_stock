@@ -13,7 +13,7 @@
 		<!-- がんばれー笑 -->
 		<div class="header">
 			<div class="wrap">
-				<h1><a href="/all">Hoshino Takahiroの卒論</a></h1>
+				<h1><a href="/all"><%= @page.page_name ||= "Hoshino Takahiroの卒論" %></a></h1>
 				<p><a href="/new?page=<%= params[:page] %>" class="new_tag">NEW TAG</a></p>
 			</div>
 		</div>
@@ -58,7 +58,7 @@
 		</div>
 		<div class="footer">
 			<div class="wrap">
-				<%= form_for(@new_comment, url: :post) do |f| %>
+				<%= form_for(@new_comment, url: :post, remote: true, authenticity_token: true) do |f| %>
 					<%= f.label :comment, 'コメント投稿', :class => 'mt-10' %>
                     <%= f.text_area :comment %>
                     <input type="hidden" name="page" id="page" value="<%= params[:page] %>" />
