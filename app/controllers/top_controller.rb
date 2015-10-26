@@ -25,7 +25,9 @@ class TopController < ApplicationController
 		end
 		@new_comment = Comment.new
 		@new_middle = Middle.new
-		@page = Page.find_by_id(params[:page])
+		unless @page = Page.find_by(id: params[:page])
+			redirect_to :action => :all
+		end
 
 		@comments = Comment.where(page: params[:page])
 		@tags = Tag.where(page: params[:page])
