@@ -77,6 +77,11 @@ label{
 	background-color:#dcdcdc;
 	position:fixed;
 	right:0;
+	overflow-y:scroll;
+	height:460px;
+}
+.scroll{
+	overflow:scroll;
 }
 .tag{
 	width:86%;

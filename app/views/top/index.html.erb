@@ -38,21 +38,23 @@
 					<% end %>
 				</div>
 				<div class="right_main">
-					<% @tags.each do |tag| %>
-						<div class="tag">
-							<h3><%= tag.tag_name %></h3>
-							<% @middles = Middle.where(tag_id: tag.id) %>
-							<ul>
-								<% @middles.each do |middle| %>
-									<% @comments = Comment.where(id: middle.comment_id) %>
-										<% @comments.each do |comment| %>
-										<li class="set_tag"><%= comment.comment %>
-										<a href="/tag_delete?comment=<%= comment.id %>&tag=<%= tag.id %>">削除</a></li>
+					<div class="scroll">
+						<% @tags.each do |tag| %>
+							<div class="tag">
+								<h3><%= tag.tag_name %></h3>
+								<% @middles = Middle.where(tag_id: tag.id) %>
+								<ul>
+									<% @middles.each do |middle| %>
+										<% @comments = Comment.where(id: middle.comment_id) %>
+											<% @comments.each do |comment| %>
+											<li class="set_tag"><%= comment.comment %>
+											<a href="/tag_delete?comment=<%= comment.id %>&tag=<%= tag.id %>">削除</a></li>
+										<% end %>
 									<% end %>
-								<% end %>
-							</ul>
-						</div>
-					<% end %>
+								</ul>
+							</div>
+						<% end %>
+					</div>
 				</div>
 			</div>
 		</div>
