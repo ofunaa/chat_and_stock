@@ -58,7 +58,7 @@
 		</div>
 		<div class="footer">
 			<div class="wrap">
-				<%= form_for(@new_comment, url: :post, remote: true, authenticity_token: true) do |f| %>
+				<%= form_for(@new_comment, url: :post, authenticity_token: true) do |f| %>
 					<%= f.label :comment, 'コメント投稿', :class => 'mt-10' %>
                     <%= f.text_area :comment %>
                     <input type="hidden" name="page" id="page" value="<%= params[:page] %>" />
