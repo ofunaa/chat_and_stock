@@ -16,7 +16,7 @@
 							<% else %>
 								<a href="/?page=<%= page.id %>"><h3><%= page.page_name %></h3></a>
 							<% end %>
-								<%= link_to 'delete', all_delete_path(:id => page.id), :method => :delete  %>
+								<%= link_to 'delete', all_delete_path(:id => page.id), :method => :delete if session[:user_name] == "saaan"  %>
 						</div>
 
 					<% end %>

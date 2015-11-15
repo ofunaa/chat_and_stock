@@ -39,7 +39,7 @@ class TopController < ApplicationController
 		@new_comment.comment = params[:comment][:comment]
 		@new_comment.page = params[:page]
 		if @new_comment.save
-			redirect_to :back
+			redirect_to :back 
 		else
 			redirect_to :back
 		end

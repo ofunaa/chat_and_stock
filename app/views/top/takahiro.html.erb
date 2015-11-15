@@ -13,7 +13,7 @@
 		<!-- がんばれー笑 -->
 		<div class="header">
 			<div class="wrap">
-				<h1><a href="/all"><%= @page.page_name ||= "Hoshino Takahiroの卒論" %></a></h1>
+				<h1><a href="/all"><%= @page.page_name ||= "Hoshino Takahiroの卒論" %>　<span>（一覧に戻る）</span></a></h1>
 			</div>
 		</div>
 		<div class="main">
@@ -21,7 +21,7 @@
 				<div class="left_main">
 					<% @comments.each do |comment| %>
 
-						<div class="comment <%= "own_comment" if comment.user_name == session[:user_name]  %>">
+						<div id="<%= comment.id %>" class="comment <%= "own_comment" if comment.user_name == session[:user_name]  %>">
 							<p><span class="user"><%= comment.user_name %></span><span class="settime"><%= comment.created_at.strftime('%H:%M:%S') %></span></p>
 							<h3><%= comment.comment %></h3>
 						
